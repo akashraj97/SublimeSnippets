@@ -1,0 +1,52 @@
+<snippet>
+	<content><![CDATA[
+
+class Trie
+{
+private:
+	vector<Trie*> child;
+
+public:
+	static int children;
+
+	Trie()
+	{
+		child.resize(children,NULL);
+	}
+
+	void insert(string &s)
+	{
+		Trie* t=this;
+		for(char c:s)
+		{
+			if(t->child[c-'a']==NULL)
+			{
+				t->child[c-'a']=new Trie();
+			}
+			t=t->child[c-'a'];
+		}
+	}
+	
+	bool search(string &s)
+	{
+		Trie* t=this;
+		for(char c:s)
+		{
+			if(t->child[c-'a']==NULL)
+			{
+				return false;
+			}
+			t=t->child[c-'a'];
+		}
+		return true;
+	}
+};
+int Trie::children=26;
+
+$1
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>TRIE</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

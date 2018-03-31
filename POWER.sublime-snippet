@@ -1,0 +1,23 @@
+<snippet>
+	<content><![CDATA[
+
+ll power(ll a,ll b)
+{
+	if(b==0)
+		return 1;
+	else if(b==1)
+		return a;
+	ll temp=power(a,b/2);
+	if(b%2)
+		return (a*temp*temp)%MOD;
+	else
+		return (temp*temp)%MOD;
+}
+
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>MODPOWER</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

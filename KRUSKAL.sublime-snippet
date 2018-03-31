@@ -1,0 +1,46 @@
+<snippet>
+	<content><![CDATA[
+
+bool cmp(ppi &a,ppi &b)
+{
+	return a.second<b.second;
+}
+
+int getParent(int i,int parent[])
+{
+	return parent[i]=(i==parent[i]?i:getParent(parent[i],parent));
+}
+
+int un_ion(int i,int p,int par[])
+{
+	par[getParent(i,par)]=getParent(p,par);
+}
+
+void kruskal(vector<ppi> &edges,int n)
+{
+	int i,sum=0;
+	sort(edges.begin(),edges.end(),cmp);
+	int parent[n];
+	for(int i=0;i<n;i++)
+	{
+		parent[i]=i;
+	}
+	for(int i=0;i<edges.size() && n>1;i++)
+	{
+		if(getParent(edges[i].first.first,parent)!=getParent(edges[i].first.second,parent))
+		{
+			un_ion(edges[i].first.first,edges[i].first.second,parent);
+			cout<<"Connecting  "<<edges[i].first.first<<"  "<<edges[i].first.second<<endl;
+			sum+=edges[i].second;
+			n--;
+		}
+	}
+	cout<<"Total SUm is "<<sum<<endl;
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>KRUSKAL</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

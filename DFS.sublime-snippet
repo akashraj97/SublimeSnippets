@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+void dfs(int i,const int &n,vector<bool> &visited,vector<vector<int>> &adjlist)
+{
+	visited[i]=true;
+	cout<<"Visited "<<i<<endl;
+	for(int j:adjlist[i])
+	{
+		if(visited[j])
+		{
+			dfs(j,n,visited,adjlist);
+		}
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>DEPTHFIRSTSEARCH</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

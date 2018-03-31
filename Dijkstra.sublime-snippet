@@ -1,0 +1,32 @@
+<snippet>
+	<content><![CDATA[
+
+void dijkstra(vector<vector<pi>> &adjlist)
+{
+	vector<int> parent(adjlist.size(),-1),cost(adjlist.size(),INT_MAX);
+	int cnode=0,cweight=0;
+	cost[cnode]=0;
+	set<pi> nodes;
+	nodes.insert(make_pair(cweight,cnode));
+	while(nodes.size())
+	{
+		cnode=(*nodes.begin()).second,cweight=(*nodes.begin()).first;
+		nodes.erase(nodes.begin());
+		if(cost[cnode]<cweight)
+			continue;
+		for(pi i:adjlist[cnode])
+			if(cost[i.second]>cweight+i.first)
+			{
+				cost[i.second]=cweight+i.first;
+				nodes.insert(make_pair(cweight+i.first,i.second));
+				parent[i.second]=cnode;
+			}
+	}
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>Dijkstra</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

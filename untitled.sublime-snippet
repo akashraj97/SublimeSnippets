@@ -1,0 +1,22 @@
+<snippet>
+	<content><![CDATA[
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<map>
+#include<set>
+#include<utility>
+#include<queue>
+#include<stack>
+using namespace std;
+#define pb push_back
+main()
+{
+	
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ms</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.cpp</scope>
+</snippet>

@@ -1,0 +1,82 @@
+<snippet>
+	<content><![CDATA[
+
+ll create_seg_tree(ll low,ll high,ll curr,vector<ll> &arr,vector<ll> &segtree)
+{
+	if(low==high)
+	{
+		segtree[curr]=arr[low];
+	}
+	else
+	{
+		ll mid=(low+high)/2;
+		segtree[curr]=create_seg_tree(low,mid,(2*curr)+1,arr,segtree) & create_seg_tree(mid+1,high,(2*curr)+2,arr,segtree);
+	}
+	//cout<<"Segment Tree at position "<<curr<<" is "<<segtree[curr]<<endl;
+	return segtree[curr];
+}
+
+ll find_seg_tree(ll l,ll r,ll low,ll high,ll curr,vector<ll> &segtree)
+{
+	//cout<<"Low and high are "<<low<<"  "<<high<<endl;
+	if(low>=l && high<=r)
+	{
+	//	cout<<"Returning "<<segtree[curr]<<endl;
+		return segtree[curr];
+	}
+	if(low>r || high<l)
+	{
+	//	cout<<"Checking Low and high are "<<low<<" "<<high<<"  and l and r are "<<l<<" "<<r<<endl;
+		//cout<<"Returning Long Max\n";
+		return LLONG_MAX;
+	}
+	ll mid=(low+high)/2;
+	return find_seg_tree(l,r,low,mid,(2*curr)+1,segtree) & find_seg_tree(l,r,mid+1,high,(2*curr)+2,segtree);
+	//cout<<"Returning "<<mid<<endl;
+	//return mid;
+}
+
+main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		ll n,k,i,j;
+		cin>>n>>k;
+		vector<ll> arr(n),segtree(4*n);
+		for(i=0;i<n;i++)
+		{
+			cin>>j;
+			arr[i]=j;
+		}
+		create_seg_tree(0,n-1,0,arr,segtree);
+		for(i=0;i<n;i++)
+		{
+			j=LLONG_MAX;
+			ll l=i-k,r=i+k;
+			//cout<<"Looking for and range in "<<l<<"  "<<r<<endl;
+			if(l<0)
+			{
+				j&=find_seg_tree(n-abs((double)l),n-1,0,n-1,0,segtree);
+				l=0;
+			}
+			else if(r>=n)
+			{
+				j&=find_seg_tree(0,r%n,0,n-1,0,segtree);
+				r=n-1;
+			}
+			//cout<<"Before 2nd operation J is "<<j<<endl;
+			j&=find_seg_tree(l,r,0,n-1,0,segtree);
+			cout<<j<<" ";
+		}
+		cout<<endl;
+	}
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>SegmentTree</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

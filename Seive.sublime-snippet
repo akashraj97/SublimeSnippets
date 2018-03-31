@@ -1,0 +1,33 @@
+<snippet>
+	<content><![CDATA[
+const int MAXS=1000001;
+set<int> primes;
+vector<bool> isPrime(MAXS,true);
+void seive()
+{
+	primes.insert(2);
+	//primes.insert(1);
+	int i=4;
+	while(i<MAXS)
+	{
+		isPrime[i]=false;
+		i+=2;
+	}
+	for(i=3;i<MAXS;i+=2)
+	{
+		if(isPrime[i])
+		{
+			primes.insert(i);
+			for(int j=i+i;j<MAXS && isPrime[i];j+=i)
+			{
+				isPrime[j]=false;
+			}
+		}
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>SEIVE</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.cpp</scope> -->
+</snippet>
