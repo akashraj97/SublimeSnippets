@@ -9,7 +9,7 @@ ll power(ll a,ll b)
 		return a;
 	ll temp=power(a,b/2);
 	if(b%2)
-		return (a*temp*temp)%MOD;
+		return (((a*temp)%MOD)*temp)%MOD;
 	else
 		return (temp*temp)%MOD;
 }
